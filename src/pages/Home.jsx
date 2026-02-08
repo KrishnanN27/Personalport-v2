@@ -95,7 +95,7 @@ const Home = () => {
               backgroundClip: "text",
             }}
           >
-            Hi, I'm Your Name 👋
+            Sowndayra Krishnan
           </h1>
           <h2
             style={{
@@ -363,7 +363,6 @@ const Home = () => {
                 background: "rgba(160, 100, 255, 0.2)",
                 borderRadius: "8px",
                 fontSize: "0.85rem",
-                fontFamily: "'Roboto Mono', monospace",
                 fontWeight: "500",
               }}
             >
@@ -417,7 +416,6 @@ const Home = () => {
                 background: "rgba(100, 150, 255, 0.2)",
                 borderRadius: "8px",
                 fontSize: "0.85rem",
-                fontFamily: "'Roboto Mono', monospace",
                 fontWeight: "500",
               }}
             >

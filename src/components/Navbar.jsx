@@ -211,9 +211,8 @@ const Navbar = () => {
           right: "1.5rem",
           zIndex: 1000,
           display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-end",
-          gap: "0.25rem",
+          alignItems: "center",
+          gap: "0.75rem",
           padding: "0.85rem 1.35rem",
           background: "rgba(255, 255, 255, 0.06)",
           backdropFilter: "blur(24px) saturate(180%)",
@@ -229,7 +228,6 @@ const Navbar = () => {
           style={{
             fontSize: "1.1rem",
             fontWeight: "600",
-            fontFamily: "'Roboto Mono', monospace",
             letterSpacing: "0.5px",
             display: "flex",
             alignItems: "center",
@@ -269,7 +267,7 @@ const Navbar = () => {
             backgroundClip: "text",
           }}
         >
-          Mountain Time
+          MST
         </div>
       </div>
     </>

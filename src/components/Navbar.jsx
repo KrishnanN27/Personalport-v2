@@ -1,12 +1,14 @@
 // Navbar.jsx
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Home, User, Briefcase, Mail, Sun, Moon } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Navbar = () => {
-  const [activeItem, setActiveItem] = useState("home");
   const [currentTime, setCurrentTime] = useState(new Date());
   const { theme, toggleTheme } = useTheme();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const timer = setInterval(() => setCurrentTime(new Date()), 1000);
@@ -14,10 +16,10 @@ const Navbar = () => {
   }, []);
 
   const navItems = [
-    { id: "home", icon: Home, label: "Home" },
-    { id: "about", icon: User, label: "About" },
-    { id: "work", icon: Briefcase, label: "Work" },
-    { id: "contact", icon: Mail, label: "Contact" },
+    { path: "/", icon: Home, label: "Home" },
+    { path: "/about", icon: User, label: "About" },
+    { path: "/research", icon: Briefcase, label: "Research" },
+    { path: "/contact", icon: Mail, label: "Contact" },
   ];
 
   return (
@@ -73,7 +75,7 @@ const Navbar = () => {
             gap: "0.25rem",
             padding: "0.5rem",
             background: "var(--glass-bg)",
-            color: "var(--text)", // ✅ KEY LINE
+            color: "var(--text)",
             backdropFilter: "blur(24px) saturate(180%)",
             border: "1px solid var(--glass-border)",
             borderRadius: "20px",
@@ -82,12 +84,12 @@ const Navbar = () => {
         >
           {navItems.map((item) => {
             const Icon = item.icon;
-            const isActive = activeItem === item.id;
+            const isActive = location.pathname === item.path;
 
             return (
               <button
-                key={item.id}
-                onClick={() => setActiveItem(item.id)}
+                key={item.path}
+                onClick={() => navigate(item.path)}
                 className={`nav-button ${isActive ? "active" : ""}`}
                 style={{
                   display: "flex",
@@ -97,7 +99,7 @@ const Navbar = () => {
                   background: isActive
                     ? "rgba(255,255,255,0.15)"
                     : "transparent",
-                  color: "inherit", // ✅ inherit text color
+                  color: "inherit",
                   border: "none",
                   borderRadius: "14px",
                   cursor: "pointer",
@@ -107,11 +109,7 @@ const Navbar = () => {
                   position: "relative",
                 }}
               >
-                <Icon
-                  size={18}
-                  strokeWidth={2.5}
-                  color="currentColor" // ✅ icon follows text
-                />
+                <Icon size={18} strokeWidth={2.5} color="currentColor" />
                 <span className="nav-label">{item.label}</span>
               </button>
             );
@@ -128,7 +126,7 @@ const Navbar = () => {
               height: 40,
               marginLeft: 4,
               background: "rgba(255,255,255,0.12)",
-              color: "inherit", // ✅ inherit
+              color: "inherit",
               border: "1px solid var(--glass-border)",
               borderRadius: 14,
               cursor: "pointer",
@@ -152,7 +150,7 @@ const Navbar = () => {
           zIndex: 1000,
           padding: "0.75rem 1.2rem",
           background: "var(--glass-bg)",
-          color: "var(--text)", // ✅ switches correctly
+          color: "var(--text)",
           border: "1px solid var(--glass-border)",
           borderRadius: "18px",
           backdropFilter: "blur(20px)",

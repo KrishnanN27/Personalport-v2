@@ -72,13 +72,14 @@ const Home = () => {
   return (
     <section
       style={{
-        minHeight: "100vh",
+        flex: 1,
         maxWidth: "1400px",
         margin: "0 auto",
         padding: "10rem 2rem 6rem",
-        color: "var(--text)",
+
         display: "flex",
         flexDirection: "column",
+        justifyContent: "center", // 👈 key line
         gap: "3.2rem",
       }}
     >

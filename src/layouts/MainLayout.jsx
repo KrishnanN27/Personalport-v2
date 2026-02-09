@@ -91,41 +91,17 @@ const MainLayout = () => {
       <main
         id="scroll-container"
         style={{
-          height: "100vh",
-          overflowY: "auto",
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
           position: "relative",
           zIndex: 1,
-
-          /* 👇 KEY FIX */
-          paddingBottom: "calc(64px + env(safe-area-inset-bottom))",
         }}
       >
         <ScrollToTop />
         <Outlet />
         <Footer />
       </main>
-
-      {/* Global layout rules */}
-      <style>{`
-        html, body {
-          height: 100%;
-          overflow: hidden;
-        }
-
-        bb-ambient-ribbon {
-          position: fixed;
-          inset: 0;
-          z-index: 0;
-          pointer-events: none;
-        }
-
-        /* Optional: only apply bottom padding on mobile */
-        @media (min-width: 769px) {
-          #scroll-container {
-            padding-bottom: 0;
-          }
-        }
-      `}</style>
     </>
   );
 };

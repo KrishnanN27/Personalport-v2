@@ -113,3 +113,16 @@ html {
   background: rgba(160, 100, 255, 0.3);
   color: white;
 }
+
+@media (max-width: 768px) {
+  footer {
+    margin-bottom: 5.5rem; /* navbar height + breathing room */
+  }
+}
+
+bb-ambient-ribbon {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}

@@ -190,7 +190,12 @@ const Research = () => {
         </motion.div>
 
         {/* ---------------- CONTENT (FIXED HEIGHT) ---------------- */}
-        <div style={{ position: "relative", height: "320px" }}>
+        <div
+          style={{
+            position: "relative",
+            minHeight: "320px",
+          }}
+        >
           <AnimatePresence mode="wait">
             <motion.div
               key={mode}

@@ -1,8 +1,8 @@
-// Navbar.jsx
 import { useEffect, useState } from "react";
 import { Home, User, Briefcase, Mail, Sun, Moon } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
 import { useNavigate, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const Navbar = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -24,49 +24,7 @@ const Navbar = () => {
 
   return (
     <>
-      <style>{`
-        .navbar-container {
-          position: fixed;
-          top: 1.5rem;
-          left: 50%;
-          transform: translateX(-50%);
-          z-index: 1000;
-        }
-
-        .nav-button {
-          position: relative;
-          overflow: hidden;
-        }
-
-        .nav-button::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(
-            45deg,
-            rgba(160, 100, 255, 0.25),
-            rgba(100, 150, 255, 0.25)
-          );
-          opacity: 0;
-          transition: opacity 0.3s ease;
-        }
-
-        .nav-button.active::before {
-          opacity: 1;
-        }
-
-        @media (max-width: 768px) {
-          .navbar-container {
-            top: auto;
-            bottom: 1.5rem;
-          }
-          .nav-label {
-            display: none;
-          }
-        }
-      `}</style>
-
-      {/* NAVBAR */}
+      {/* ---------------- NAVBAR ---------------- */}
       <nav className="navbar-container">
         <div
           style={{
@@ -77,9 +35,11 @@ const Navbar = () => {
             background: "var(--glass-bg)",
             color: "var(--text)",
             backdropFilter: "blur(24px) saturate(180%)",
+            WebkitBackdropFilter: "blur(24px) saturate(180%)",
             border: "1px solid var(--glass-border)",
             borderRadius: "20px",
             boxShadow: "0 8px 32px rgba(0,0,0,0.25)",
+            position: "relative",
           }}
         >
           {navItems.map((item) => {
@@ -90,26 +50,48 @@ const Navbar = () => {
               <button
                 key={item.path}
                 onClick={() => navigate(item.path)}
-                className={`nav-button ${isActive ? "active" : ""}`}
                 style={{
+                  position: "relative",
                   display: "flex",
                   alignItems: "center",
                   gap: "0.6rem",
                   padding: "0.7rem 1.1rem",
-                  background: isActive
-                    ? "rgba(255,255,255,0.15)"
-                    : "transparent",
+                  background: "transparent",
                   color: "inherit",
                   border: "none",
                   borderRadius: "14px",
                   cursor: "pointer",
                   fontSize: "0.9rem",
                   fontWeight: isActive ? 600 : 500,
-                  transition: "all 0.25s ease",
-                  position: "relative",
+                  zIndex: 1,
                 }}
               >
-                <Icon size={18} strokeWidth={2.5} color="currentColor" />
+                {isActive && (
+                  <motion.div
+                    layoutId="nav-active-pill"
+                    transition={{
+                      type: "spring",
+                      stiffness: 380,
+                      damping: 30,
+                    }}
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      borderRadius: "14px",
+                      background:
+                        theme === "dark"
+                          ? "rgba(255,255,255,0.16)"
+                          : "rgba(0,0,0,0.06)",
+                      boxShadow:
+                        theme === "dark"
+                          ? "inset 0 1px 0 rgba(255,255,255,0.25)"
+                          : "inset 0 1px 0 rgba(255,255,255,0.6)",
+                      zIndex: -1,
+                    }}
+                  />
+                )}
+
+                <Icon size={18} strokeWidth={2.5} />
                 <span className="nav-label">{item.label}</span>
               </button>
             );
@@ -128,20 +110,16 @@ const Navbar = () => {
               background: "rgba(255,255,255,0.12)",
               color: "inherit",
               border: "1px solid var(--glass-border)",
-              borderRadius: 14,
+              borderRadius: "14px",
               cursor: "pointer",
             }}
           >
-            {theme === "dark" ? (
-              <Sun size={18} color="currentColor" />
-            ) : (
-              <Moon size={18} color="currentColor" />
-            )}
+            {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
           </button>
         </div>
       </nav>
 
-      {/* TIME */}
+      {/* ---------------- TIME ---------------- */}
       <div
         style={{
           position: "fixed",
@@ -154,6 +132,7 @@ const Navbar = () => {
           border: "1px solid var(--glass-border)",
           borderRadius: "18px",
           backdropFilter: "blur(20px)",
+          WebkitBackdropFilter: "blur(20px)",
           fontWeight: 600,
           fontSize: "0.9rem",
         }}
@@ -166,6 +145,28 @@ const Navbar = () => {
         })}{" "}
         <span style={{ opacity: 0.6, fontSize: "0.7rem" }}>MST</span>
       </div>
+
+      {/* ---------------- RESPONSIVE CSS ---------------- */}
+      <style>{`
+        .navbar-container {
+          position: fixed;
+          top: 1.5rem;
+          left: 50%;
+          transform: translateX(-50%);
+          z-index: 1000;
+        }
+
+        @media (max-width: 768px) {
+          .navbar-container {
+            top: auto;
+            bottom: 1.5rem;
+          }
+
+          .nav-label {
+            display: none;
+          }
+        }
+      `}</style>
     </>
   );
 };

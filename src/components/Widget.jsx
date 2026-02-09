@@ -12,6 +12,7 @@ export default function Widget({ title, children }) {
       style={{
         borderRadius: "22px",
         overflow: "hidden",
+        minHeight: "220px",
 
         // Glass background — airy
         background:

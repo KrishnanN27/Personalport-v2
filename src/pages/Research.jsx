@@ -1,10 +1,10 @@
-const Research = () => {
+const Contact = () => {
   return (
     <section
       style={{
         minHeight: "100vh",
         padding: "8rem 2rem 4rem",
-        maxWidth: "900px",
+        maxWidth: "700px",
         margin: "0 auto",
         color: "var(--text)",
       }}
@@ -16,7 +16,7 @@ const Research = () => {
           marginBottom: "1.5rem",
         }}
       >
-        Research
+        Contact
       </h1>
 
       <p
@@ -27,65 +27,51 @@ const Research = () => {
           marginBottom: "3rem",
         }}
       >
-        My research focuses on machine learning systems, distributed
-        optimization, and the design of scalable algorithms that bridge theory
-        and practice.
+        I’m always open to discussions about research, collaborations, or
+        interesting problems. Feel free to reach out.
       </p>
 
-      <div style={{ display: "grid", gap: "2rem" }}>
-        {[
-          {
-            title: "Scalable Federated Learning with Privacy Guarantees",
-            venue: "NeurIPS 2024",
-            desc: "A framework for large-scale federated learning with formal privacy guarantees and minimal communication overhead.",
-          },
-          {
-            title: "Efficient Neural Architecture Search via Gradient Sharing",
-            venue: "ICML 2023",
-            desc: "Introduces a gradient-based NAS method that reduces search cost by an order of magnitude.",
-          },
-          {
-            title: "Adaptive Scheduling in Distributed Training Systems",
-            venue: "Under Review",
-            desc: "Explores adaptive resource allocation strategies for heterogeneous distributed training environments.",
-          },
-        ].map((paper) => (
+      <div
+        style={{
+          padding: "2rem",
+          background: "var(--glass-bg)",
+          border: "1px solid var(--glass-border)",
+          borderRadius: "18px",
+          backdropFilter: "blur(12px)",
+        }}
+      >
+        <div style={{ marginBottom: "1.5rem" }}>
+          <div style={{ opacity: 0.6, fontSize: "0.85rem" }}>Email</div>
+          <div style={{ fontSize: "1rem", fontWeight: 500 }}>
+            yourname@university.edu
+          </div>
+        </div>
+
+        <div style={{ marginBottom: "1.5rem" }}>
+          <div style={{ opacity: 0.6, fontSize: "0.85rem" }}>Affiliation</div>
+          <div style={{ fontSize: "1rem", fontWeight: 500 }}>
+            Department of Computer Science
+          </div>
+        </div>
+
+        <div>
+          <div style={{ opacity: 0.6, fontSize: "0.85rem" }}>Links</div>
           <div
-            key={paper.title}
             style={{
-              padding: "1.75rem",
-              background: "var(--glass-bg)",
-              border: "1px solid var(--glass-border)",
-              borderRadius: "16px",
-              backdropFilter: "blur(12px)",
+              display: "flex",
+              gap: "1.25rem",
+              marginTop: "0.5rem",
+              fontSize: "0.95rem",
             }}
           >
-            <h3 style={{ fontSize: "1.3rem", fontWeight: 600 }}>
-              {paper.title}
-            </h3>
-            <div
-              style={{
-                marginTop: "0.25rem",
-                fontSize: "0.85rem",
-                opacity: 0.6,
-              }}
-            >
-              {paper.venue}
-            </div>
-            <p
-              style={{
-                marginTop: "0.75rem",
-                lineHeight: 1.7,
-                opacity: 0.8,
-              }}
-            >
-              {paper.desc}
-            </p>
+            <span style={{ opacity: 0.8 }}>Google Scholar</span>
+            <span style={{ opacity: 0.8 }}>GitHub</span>
+            <span style={{ opacity: 0.8 }}>LinkedIn</span>
           </div>
-        ))}
+        </div>
       </div>
     </section>
   );
 };
 
-export default Research;
+export default Contact;

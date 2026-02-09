@@ -1,8 +1,36 @@
+import { motion } from "framer-motion";
+
 import Widget from "../components/Widget";
 import NowPlaying from "../components/widgets/NowPlaying";
 import ContactCard from "../components/widgets/ContactCard";
 import LatestProject from "../components/widgets/LatestProject";
 import LatestBlog from "../components/widgets/LatestBlog";
+
+/* ---------------- animation presets ---------------- */
+
+const container = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.05,
+    },
+  },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 14 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.45,
+      ease: "easeOut",
+    },
+  },
+};
+
+/* ---------------- component ---------------- */
 
 const Home = () => {
   return (
@@ -18,8 +46,11 @@ const Home = () => {
         gap: "3.2rem",
       }}
     >
-      {/* TOP — WIDGET ROW */}
-      <div
+      {/* ---------------- WIDGET ROW ---------------- */}
+      <motion.div
+        variants={container}
+        initial="hidden"
+        animate="show"
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
@@ -27,72 +58,89 @@ const Home = () => {
           alignItems: "stretch",
         }}
       >
-        <Widget title="Latest Project">
-          <LatestProject />
-        </Widget>
+        <motion.div variants={fadeUp}>
+          <Widget title="Latest Project">
+            <LatestProject />
+          </Widget>
+        </motion.div>
 
-        <Widget title="Latest Blog">
-          <LatestBlog />
-        </Widget>
+        <motion.div variants={fadeUp}>
+          <Widget title="Latest Blog">
+            <LatestBlog />
+          </Widget>
+        </motion.div>
 
-        <Widget title="Get in Touch">
-          <ContactCard />
-        </Widget>
+        <motion.div variants={fadeUp}>
+          <Widget title="Get in Touch">
+            <ContactCard />
+          </Widget>
+        </motion.div>
 
-        <Widget title="Now Playing">
-          <NowPlaying />
-        </Widget>
-      </div>
+        <motion.div variants={fadeUp}>
+          <Widget title="Now Playing">
+            <NowPlaying />
+          </Widget>
+        </motion.div>
+      </motion.div>
 
-      {/* CONTENT BELOW */}
-      <div style={{ maxWidth: 720 }}>
-        <h1
+      {/* ---------------- MAIN CONTENT ---------------- */}
+      <motion.div
+        variants={container}
+        initial="hidden"
+        animate="show"
+        style={{ maxWidth: 720 }}
+      >
+        <motion.h1
+          variants={fadeUp}
           style={{
             fontSize: "3.8rem",
             fontWeight: 700,
-            letterSpacing: "-0.03em",
-            marginBottom: "1rem",
+            letterSpacing: "-0.035em",
+            marginBottom: "0.8rem",
           }}
         >
-          Sowndayra Krishnan
-        </h1>
+          Sowndarya Krishnan
+        </motion.h1>
 
-        <h2
+        <motion.h2
+          variants={fadeUp}
           style={{
-            fontSize: "1.4rem",
+            fontSize: "1.35rem",
             fontWeight: 400,
             opacity: 0.8,
-            marginBottom: "2rem",
+            marginBottom: "1.8rem",
           }}
         >
-          Computer Science PhD · Research Scientist
-        </h2>
+          PhD Student · Research Assistant
+        </motion.h2>
 
-        <p
+        <motion.p
+          variants={fadeUp}
           style={{
             fontSize: "1.1rem",
-            lineHeight: 1.75,
-            opacity: 0.75,
-            marginBottom: "1.5rem",
+            lineHeight: 1.7,
+            opacity: 0.78,
+            marginBottom: "1.4rem",
           }}
         >
-          Hi, I’m Sowndarya — most friends call me Krish or Chris. I’m a
-          first-year PhD student in Computer Science at Colorado School of
-          Mines, exploring the intersection of quantum computing, artificial
-          intelligence, and scientific computing.
-        </p>
+          I am a PhD student in Computer Science at Colorado School of Mines and
+          a research assistant working on scientific and computational methods
+          for complex physical systems.
+        </motion.p>
 
-        <p
+        <motion.p
+          variants={fadeUp}
           style={{
             fontSize: "1.05rem",
-            lineHeight: 1.75,
+            lineHeight: 1.7,
             opacity: 0.7,
           }}
         >
-          My research focuses on hybrid quantum–AI methods for solving partial
-          differential equations that govern complex physical systems.
-        </p>
-      </div>
+          My research focuses on hybrid quantum–AI approaches for solving
+          partial differential equations, with applications in physics-based
+          modeling and simulation.
+        </motion.p>
+      </motion.div>
     </section>
   );
 };

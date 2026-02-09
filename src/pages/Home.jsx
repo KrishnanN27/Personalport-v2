@@ -127,25 +127,21 @@ const Home = () => {
         animate="show"
         style={{ maxWidth: 720 }}
       >
-        {/* Floating header block */}
-        <motion.div
-          animate={{ y: [0, -4, 0] }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        >
+        {/* Header block (static, no floating animation) */}
+        <div>
           <motion.h1
             variants={fadeUp}
             style={{
-              fontSize: "3.8rem",
-              fontWeight: 700,
-              letterSpacing: "-0.035em",
-              marginBottom: "0.9rem",
+              fontSize: "3.2rem",
+              fontWeight: 600,
+              letterSpacing: "-0.025em",
+              marginBottom: "0.8rem",
+              lineHeight: 1.1,
+              opacity: 0.92,
             }}
           >
-            Sowndarya Krishnan
+            Sowndarya{" "}
+            <span style={{ opacity: 0.6, fontWeight: 500 }}>Krishnan</span>
           </motion.h1>
 
           {/* Tags */}
@@ -160,8 +156,9 @@ const Home = () => {
           >
             <Tag>PhD Student</Tag>
             <Tag>Research Assistant</Tag>
+            <Tag>Former Software Engineer</Tag>
           </motion.div>
-        </motion.div>
+        </div>
 
         <motion.p
           variants={fadeUp}

@@ -67,7 +67,7 @@ const Research = () => {
             alt="Hybrid Quantum–AI Concept"
             style={{
               width: "100%",
-              height: "240px",
+              height: "350px",
               objectFit: "cover",
               display: "block",
             }}

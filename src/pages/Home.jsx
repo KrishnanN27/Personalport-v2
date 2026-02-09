@@ -46,22 +46,20 @@ const tagVariants = {
 };
 
 /* ---------------- Tag component ---------------- */
-
 const Tag = ({ children }) => (
   <motion.span
     variants={tagVariants}
-    whileHover={{ y: -2, scale: 1.04 }}
     style={{
-      padding: "0.4rem 0.85rem",
-      borderRadius: "999px",
-      fontSize: "0.8rem",
+      padding: "0.25rem 0.6rem",
+      fontSize: "0.75rem",
       fontWeight: 500,
-      background:
-        "linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.02))",
-      backdropFilter: "blur(10px)",
-      border: "1px solid rgba(255,255,255,0.14)",
+      textTransform: "uppercase",
+      letterSpacing: "0.06em",
+
+      borderRadius: "4px",
+      background: "var(--tag-bg)",
+      border: "1px solid var(--tag-border)",
       color: "var(--text)",
-      boxShadow: "0 6px 20px rgba(0,0,0,0.25)",
     }}
   >
     {children}
@@ -85,7 +83,7 @@ const Home = () => {
       }}
     >
       {/* ---------------- WIDGET ROW ---------------- */}
-      <motion.div
+      {/* <motion.div
         variants={container}
         initial="hidden"
         animate="show"
@@ -118,7 +116,7 @@ const Home = () => {
             <NowPlaying />
           </Widget>
         </motion.div>
-      </motion.div>
+      </motion.div> */}
 
       {/* ---------------- MAIN CONTENT ---------------- */}
       <motion.div

@@ -13,11 +13,27 @@ const MainLayout = () => {
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
     if (!bgRef.current) return;
-
-    // 🔹 MOBILE: simple solid background
+    // 🔹 MOBILE: cool ambient gradient
     if (isMobile) {
       bgRef.current.innerHTML = "";
-      bgRef.current.style.background = theme === "dark" ? "#06040a" : "#ece8e3";
+      bgRef.current.style.background =
+        theme === "dark"
+          ? `
+        linear-gradient(
+          135deg,
+          #06040a 0%,
+          #0d0922 45%,
+          #06040a 100%
+        )
+      `
+          : `
+  linear-gradient(
+    180deg,
+    #f6f5f8 0%,
+    #ecebf1 50%,
+    #f6f5f8 100%
+  )
+`;
       return;
     }
 

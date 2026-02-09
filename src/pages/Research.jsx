@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import researchImage from "../assets/images/research/research.png";
 
 /* ---------------- animation presets ---------------- */
@@ -10,6 +10,20 @@ const fadeUp = {
     y: 0,
     filter: "blur(0px)",
     transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+  },
+};
+
+const contentVariants = {
+  hidden: { opacity: 0, y: 8 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] },
+  },
+  exit: {
+    opacity: 0,
+    y: -8,
+    transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] },
   },
 };
 
@@ -27,34 +41,74 @@ const Research = () => {
       }}
     >
       <motion.div initial="hidden" animate="show">
-        {/* Image */}
-        <motion.img
-          src={researchImage}
-          alt="Hybrid Quantum–AI Concept"
+        {/* Image with enhanced container */}
+        <motion.div
           variants={{
-            hidden: { opacity: 0, filter: "blur(6px)" },
+            hidden: { opacity: 0, scale: 0.96, filter: "blur(6px)" },
             show: {
               opacity: 1,
+              scale: 1,
               filter: "blur(0px)",
-              transition: { duration: 0.6 },
+              transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
             },
           }}
           style={{
-            width: "80%",
-            height: "280px",
-            objectFit: "cover",
-            borderRadius: "16px",
-            margin: "0 auto 3rem",
-            display: "block",
-            opacity: 0.9,
+            position: "relative",
+            width: "85%",
+            maxWidth: "700px",
+            margin: "0 auto 4rem",
+            borderRadius: "20px",
+            overflow: "hidden",
+            boxShadow: "0 8px 32px rgba(0, 0, 0, 0.12)",
           }}
-        />
+        >
+          <img
+            src={researchImage}
+            alt="Hybrid Quantum–AI Concept"
+            style={{
+              width: "100%",
+              height: "240px",
+              objectFit: "cover",
+              display: "block",
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background:
+                "linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.05))",
+              pointerEvents: "none",
+            }}
+          />
+        </motion.div>
 
-        {/* Metaphor */}
-        <motion.p variants={fadeUp} style={paragraphStyle}>
-          <strong>If I had to explain my research in one picture:</strong> it’s
-          like giving a fast plane the vast capacity of a ship.
-        </motion.p>
+        {/* Metaphor with accent styling */}
+        <motion.div
+          variants={fadeUp}
+          style={{
+            ...paragraphStyle,
+            padding: "1.5rem 0",
+            marginBottom: "2rem",
+            maxWidth: "640px",
+            fontSize: "1.05em",
+            lineHeight: 1.6,
+          }}
+        >
+          <div
+            style={{
+              width: "48px",
+              height: "3px",
+              background: "currentColor",
+              opacity: 0.3,
+              marginBottom: "1rem",
+            }}
+          />
+          <strong style={{ opacity: 0.9 }}>
+            If I had to explain my research in one picture:
+          </strong>{" "}
+          it's like giving a fast plane the vast capacity of a ship.
+        </motion.div>
 
         <motion.p variants={fadeUp} style={paragraphStyle}>
           Artificial intelligence and machine learning are already fast and
@@ -62,79 +116,143 @@ const Research = () => {
           It expands what can be carried, explored, and accessed.
         </motion.p>
 
-        {/* Toggle */}
+        {/* Compact Centered Toggle */}
         <motion.div
           variants={fadeUp}
           style={{
             display: "flex",
-            alignItems: "center",
-            gap: "1.25rem",
-            margin: "3.5rem 0 2.5rem",
-            fontSize: "0.95rem",
-            opacity: 0.8,
+            justifyContent: "center",
+            margin: "4rem 0 3rem",
           }}
         >
-          <span>Viewing this explanation for:</span>
-
-          <button
-            onClick={() => setMode("researchers")}
-            style={toggleStyle(mode === "researchers")}
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              padding: "0.75rem 1.25rem",
+              background: "rgba(128, 128, 128, 0.04)",
+              borderRadius: "12px",
+              border: "1px solid rgba(128, 128, 128, 0.08)",
+            }}
           >
-            Researchers
-          </button>
+            <span
+              style={{
+                fontSize: "0.9rem",
+                opacity: 0.65,
+                fontWeight: 500,
+                letterSpacing: "0.01em",
+              }}
+            >
+              Viewing for:
+            </span>
 
-          <button
-            onClick={() => setMode("everyone")}
-            style={toggleStyle(mode === "everyone")}
-          >
-            Everyone
-          </button>
+            <div
+              style={{
+                display: "flex",
+                gap: "0.5rem",
+                marginLeft: "0.5rem",
+                position: "relative",
+              }}
+            >
+              {/* Background slider */}
+              <motion.div
+                layout
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: mode === "researchers" ? 0 : "calc(50% + 0.25rem)",
+                  width: "calc(50% - 0.25rem)",
+                  height: "100%",
+                  background: "var(--text, currentColor)",
+                  borderRadius: "8px",
+                  opacity: 0.08,
+                  zIndex: 0,
+                }}
+              />
+
+              <button
+                onClick={() => setMode("researchers")}
+                style={toggleButtonStyle(mode === "researchers")}
+              >
+                Researchers
+              </button>
+
+              <button
+                onClick={() => setMode("everyone")}
+                style={toggleButtonStyle(mode === "everyone")}
+              >
+                Everyone
+              </button>
+            </div>
+          </div>
         </motion.div>
 
-        {/* Toggle Content (height-balanced, no animation) */}
-        {/* Toggle Content (smooth height adjustment) */}
-        <div
-          style={{
-            transition: "height 0.25s ease",
-            overflow: "hidden",
-          }}
-        >
-          {mode === "researchers" ? (
-            <>
-              <p style={paragraphStyle}>
-                My research focuses on the development of hybrid quantum–AI
-                algorithms for scientific problems governed by partial
-                differential equations (PDEs).
-              </p>
+        {/* Animated Content Toggle */}
+        <div style={{ position: "relative", minHeight: "280px" }}>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={mode}
+              variants={contentVariants}
+              initial="hidden"
+              animate="show"
+              exit="exit"
+            >
+              {mode === "researchers" ? (
+                <>
+                  <p style={paragraphStyle}>
+                    My research focuses on the development of{" "}
+                    <span style={highlightStyle}>
+                      hybrid quantum–AI algorithms
+                    </span>{" "}
+                    for scientific problems governed by partial differential
+                    equations (PDEs).
+                  </p>
 
-              <p style={paragraphStyle}>
-                I design quantum-enhanced computational frameworks that combine
-                variational quantum algorithms with machine learning methods,
-                targeting multiscale, multiphysics systems beyond classical
-                limits.
-              </p>
+                  <p style={paragraphStyle}>
+                    I design quantum-enhanced computational frameworks that
+                    combine variational quantum algorithms with machine learning
+                    methods, targeting{" "}
+                    <span style={highlightStyle}>
+                      multiscale, multiphysics systems
+                    </span>{" "}
+                    beyond classical limits.
+                  </p>
 
-              <p style={paragraphStyle}>
-                By reformulating PDE-based models for quantum hardware, my work
-                aims to expand the scope of scientific modeling and discovery.
-              </p>
-            </>
-          ) : (
-            <>
-              <p style={paragraphStyle}>
-                Modern science relies on mathematical models to understand
-                complex physical systems—from how fluids move through porous
-                materials to how energy and matter interact in large-scale
-                engineering processes.
-              </p>
+                  <p style={paragraphStyle}>
+                    By reformulating PDE-based models for quantum hardware, my
+                    work aims to expand the scope of scientific modeling and
+                    discovery.
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p style={paragraphStyle}>
+                    Modern science relies on mathematical models to understand
+                    complex physical systems—from how fluids move through porous
+                    materials to how energy and matter interact in large-scale
+                    engineering processes.
+                  </p>
 
-              <p style={paragraphStyle}>
-                My research explores how quantum computing and artificial
-                intelligence can work together to push beyond classical
-                computational limits.
-              </p>
-            </>
-          )}
+                  <p style={paragraphStyle}>
+                    My research explores how{" "}
+                    <span style={highlightStyle}>quantum computing</span> and{" "}
+                    <span style={highlightStyle}>artificial intelligence</span>{" "}
+                    can work together to push beyond classical computational
+                    limits.
+                  </p>
+
+                  <p style={{ ...paragraphStyle, opacity: 0.65 }}>
+                    Think of it as creating new tools that help us simulate and
+                    understand phenomena that current computers struggle
+                    with—enabling breakthroughs in materials science, energy
+                    systems, and beyond.
+                  </p>
+                </>
+              )}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </motion.div>
     </section>
@@ -145,22 +263,35 @@ const Research = () => {
 
 const paragraphStyle = {
   fontSize: "1.15rem",
-  lineHeight: 1.8,
+  lineHeight: 1.85,
   opacity: 0.78,
   marginBottom: "1.75rem",
+  letterSpacing: "-0.01em",
 };
 
-const toggleStyle = (active) => ({
+const toggleButtonStyle = (active) => ({
   background: "none",
   border: "none",
-  padding: 0,
+  padding: "0.5rem 1rem",
   cursor: "pointer",
-  fontSize: "0.95rem",
+  fontSize: "0.9rem",
   color: "var(--text)",
-  fontWeight: active ? 600 : 400,
-  opacity: active ? 1 : 0.45,
-  textDecoration: active ? "underline" : "none",
-  textUnderlineOffset: "6px",
+  fontWeight: active ? 600 : 500,
+  opacity: active ? 1 : 0.5,
+  position: "relative",
+  zIndex: 1,
+  transition: "opacity 0.2s ease",
+  borderRadius: "8px",
+  letterSpacing: "0.01em",
 });
+
+const highlightStyle = {
+  fontWeight: 600,
+  opacity: 0.95,
+  background:
+    "linear-gradient(120deg, transparent 0%, rgba(128,128,128,0.1) 100%)",
+  padding: "0.1em 0.25em",
+  borderRadius: "3px",
+};
 
 export default Research;

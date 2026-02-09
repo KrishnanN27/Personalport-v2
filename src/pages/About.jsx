@@ -6,6 +6,7 @@ import {
 } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import headshot from "../assets/images/about/headshot.jpeg";
+import cvFile from "../assets/pdf/CV.pdf";
 
 /* ---------------- animations ---------------- */
 
@@ -308,7 +309,12 @@ const About = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.6 }}
               >
-                <a download="Sowndarya_Krishnan_CV.pdf" className="cv-button">
+                <a
+                  href={cvFile}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cv-button"
+                >
                   <svg
                     width="16"
                     height="16"
@@ -319,11 +325,11 @@ const About = () => {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   >
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                    <polyline points="7 10 12 15 17 10" />
-                    <line x1="12" y1="15" x2="12" y2="3" />
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                    <polyline points="15 3 21 3 21 9" />
+                    <line x1="10" y1="14" x2="21" y2="3" />
                   </svg>
-                  Download CV
+                  View CV
                 </a>
               </motion.div>
             </div>
@@ -526,11 +532,24 @@ const About = () => {
         </motion.section>
       </main>
 
-      {/* -------- STYLES -------- */}
       <style>{`
         :root {
           --text: #ffffff;
           --bg: #000000;
+          --card-bg: rgba(255, 255, 255, 0.03);
+          --card-bg-hover: rgba(255, 255, 255, 0.05);
+          --border-color: rgba(255, 255, 255, 0.15);
+          --border-color-hover: rgba(255, 255, 255, 0.25);
+        }
+
+        /* For light theme, make borders dark */
+        :root[data-theme="light"] {
+          --text: #1e2329;
+          --bg: #f3f1ee;
+          --card-bg: rgba(255, 255, 255, 0.5);
+          --card-bg-hover: rgba(255, 255, 255, 0.7);
+          --border-color: rgba(0, 0, 0, 0.2);
+          --border-color-hover: rgba(0, 0, 0, 0.3);
         }
 
 .intro-actions {
@@ -565,6 +584,7 @@ const About = () => {
   flex-shrink: 0;
   opacity: 0.9;
 }
+
         .about-wrapper {
           max-width: 1200px;
           margin: 0 auto;
@@ -605,9 +625,9 @@ const About = () => {
         }
 
         .about-nav button {
-          background: rgba(255, 255, 255, 0.03);
-          backdrop-filter: blur(10px);
-          border: 1px solid rgba(255, 255, 255, 0.06);
+          background: transparent;
+          backdrop-filter: none;
+          border: none;
           border-radius: 12px;
           padding: 0.85rem 1rem;
           text-align: left;
@@ -624,14 +644,10 @@ const About = () => {
 
         .about-nav button:hover {
           opacity: 1;
-          background: rgba(255, 255, 255, 0.06);
-          border-color: rgba(255, 255, 255, 0.12);
         }
 
         .about-nav button.active {
           opacity: 1;
-          background: rgba(255, 255, 255, 0.08);
-          border-color: rgba(255, 255, 255, 0.15);
         }
 
         .nav-label {
@@ -650,7 +666,6 @@ const About = () => {
           );
           border-radius: 0 4px 4px 0;
         }
-
         .about-content {
           margin-left: 260px;
           max-width: 760px;
@@ -708,7 +723,7 @@ const About = () => {
           object-fit: cover;
           position: relative;
           z-index: 2;
-          border: 3px solid rgba(255, 255, 255, 0.1);
+          border: 3px solid var(--border-color);
         }
 
         .intro-text {
@@ -716,12 +731,12 @@ const About = () => {
         }
 
        .intro-name {
-  font-size: clamp(2rem, 3.5vw, 2.6rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  margin-bottom: 0.75rem;
-  color: inherit;
-}
+          font-size: clamp(2rem, 3.5vw, 2.6rem);
+          font-weight: 700;
+          letter-spacing: -0.03em;
+          margin-bottom: 0.75rem;
+          color: inherit;
+        }
 
         .intro-meta {
           font-size: 1rem;
@@ -769,9 +784,9 @@ const About = () => {
         }
 
         .experience-card {
-          background: rgba(255, 255, 255, 0.03);
+          background: var(--card-bg);
           backdrop-filter: blur(20px);
-          border: 1px solid rgba(255, 255, 255, 0.08);
+          border: 1px solid var(--border-color);
           border-radius: 20px;
           padding: 2rem;
           position: relative;
@@ -780,8 +795,8 @@ const About = () => {
         }
 
         .experience-card:hover {
-          background: rgba(255, 255, 255, 0.05);
-          border-color: rgba(255, 255, 255, 0.15);
+          background: var(--card-bg-hover);
+          border-color: var(--border-color-hover);
           transform: translateY(-4px);
           box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
@@ -910,7 +925,7 @@ const About = () => {
           height: 16px;
           border-radius: 50%;
           background: rgba(255, 255, 255, 0.3);
-          border: 2px solid rgba(255, 255, 255, 0.5);
+          border: 2px solid var(--border-color);
           flex-shrink: 0;
           z-index: 2;
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -918,7 +933,7 @@ const About = () => {
 
         .experience-item:hover .timeline-dot {
           background: rgba(255, 255, 255, 0.6);
-          border-color: rgba(255, 255, 255, 0.8);
+          border-color: var(--border-color-hover);
           box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
         }
 
@@ -926,7 +941,7 @@ const About = () => {
           width: 2px;
           flex: 1;
           background: linear-gradient(to bottom,
-            rgba(255, 255, 255, 0.15),
+            var(--border-color),
             rgba(255, 255, 255, 0.05)
           );
           margin-top: 1rem;
@@ -939,17 +954,17 @@ const About = () => {
         }
 
         .education-card {
-          background: rgba(255, 255, 255, 0.03);
+          background: var(--card-bg);
           backdrop-filter: blur(20px);
-          border: 1px solid rgba(255, 255, 255, 0.08);
+          border: 1px solid var(--border-color);
           border-radius: 16px;
           padding: 1.75rem;
           transition: all 0.3s ease;
         }
 
         .education-card:hover {
-          background: rgba(255, 255, 255, 0.05);
-          border-color: rgba(255, 255, 255, 0.15);
+          background: var(--card-bg-hover);
+          border-color: var(--border-color-hover);
           transform: translateX(8px);
         }
 
@@ -979,9 +994,9 @@ const About = () => {
         }
 
         .skill-card {
-          background: rgba(255, 255, 255, 0.03);
+          background: var(--card-bg);
           backdrop-filter: blur(20px);
-          border: 1px solid rgba(255, 255, 255, 0.08);
+          border: 1px solid var(--border-color);
           border-radius: 18px;
           padding: 1.75rem;
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1006,8 +1021,8 @@ const About = () => {
         }
 
         .skill-card:hover {
-          background: rgba(255, 255, 255, 0.05);
-          border-color: rgba(255, 255, 255, 0.15);
+          background: var(--card-bg-hover);
+          border-color: var(--border-color-hover);
           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
@@ -1026,7 +1041,7 @@ const About = () => {
 
         .skill-tag {
           background: rgba(255, 255, 255, 0.08);
-          border: 1px solid rgba(255, 255, 255, 0.12);
+          border: 1px solid var(--border-color);
           border-radius: 8px;
           padding: 0.35rem 0.75rem;
           font-size: 0.85rem;
@@ -1048,50 +1063,57 @@ const About = () => {
           gap: 1.25rem;
         }
 
-     .honor-card {
-  position: relative;
-  padding: 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
+        .honor-card {
+          position: relative;
+          padding: 1.5rem;
+          background: var(--card-bg);
+          border: 1px solid var(--border-color);
+          border-radius: 8px;
+          transition: all 0.3s ease;
+        }
 
-.honor-year {
-  font-size: 0.85rem;
-  opacity: 0.6;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-}
+        .honor-card:hover {
+          background: var(--card-bg-hover);
+          border-color: var(--border-color-hover);
+        }
 
-.honor-title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  line-height: 1.4;
-}
+        .honor-year {
+          font-size: 0.85rem;
+          opacity: 0.6;
+          margin-bottom: 0.5rem;
+          font-weight: 500;
+        }
 
-.honor-org {
-  font-size: 0.9rem;
-  opacity: 0.7;
-  margin: 0;
-  line-height: 1.5;
-}
+        .honor-title {
+          font-size: 1.1rem;
+          font-weight: 600;
+          margin-bottom: 0.5rem;
+          line-height: 1.4;
+        }
 
-.honor-shine {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.03), transparent);
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
+        .honor-org {
+          font-size: 0.9rem;
+          opacity: 0.7;
+          margin: 0;
+          line-height: 1.5;
+        }
 
-.honor-card:hover .honor-shine {
-  opacity: 1;
-}
+        .honor-shine {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+          pointer-events: none;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+
+        .honor-card:hover .honor-shine {
+          opacity: 1;
+        }
+
 
         /* -------- MOBILE & TABLET -------- */
 

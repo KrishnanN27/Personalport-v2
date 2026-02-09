@@ -54,8 +54,8 @@ const Research = () => {
           }}
           style={{
             position: "relative",
-            width: "85%",
-            maxWidth: "700px",
+            width: "100%",
+            maxWidth: "720px",
             margin: "0 auto 4rem",
             borderRadius: "20px",
             overflow: "hidden",
@@ -67,11 +67,11 @@ const Research = () => {
             alt="Hybrid Quantum–AI Concept"
             style={{
               width: "100%",
-              height: "350px",
-              objectFit: "cover",
+              height: "auto", // ✅ key line
               display: "block",
             }}
           />
+
           <div
             style={{
               position: "absolute",

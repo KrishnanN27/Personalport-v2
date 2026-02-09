@@ -28,6 +28,8 @@ const contentVariants = {
   },
 };
 
+/* ---------------- component ---------------- */
+
 const Research = () => {
   const [mode, setMode] = useState("researchers");
 
@@ -37,12 +39,18 @@ const Research = () => {
         minHeight: "100vh",
         maxWidth: "900px",
         margin: "0 auto",
-        padding: "8rem 2rem 6rem",
+
+        /* navbar-safe + responsive */
+        paddingTop: "clamp(6.5rem, 12vh, 8.5rem)",
+        paddingBottom: "clamp(4rem, 10vh, 6rem)",
+        paddingLeft: "clamp(1.25rem, 5vw, 2rem)",
+        paddingRight: "clamp(1.25rem, 5vw, 2rem)",
+
         color: "var(--text)",
       }}
     >
       <motion.div initial="hidden" animate="show">
-        {/* ---------------- IMAGE (LOCKED ASPECT RATIO) ---------------- */}
+        {/* ---------------- IMAGE ---------------- */}
         <motion.div
           variants={{
             hidden: { opacity: 0, scale: 0.96, filter: "blur(6px)" },
@@ -57,10 +65,11 @@ const Research = () => {
             aspectRatio: "16 / 9",
             width: "100%",
             maxWidth: "720px",
-            margin: "0 auto 4rem",
-            borderRadius: "20px",
+            margin: "0 auto clamp(2.5rem, 8vh, 4rem)",
+            borderRadius: "clamp(14px, 4vw, 20px)",
             overflow: "hidden",
             boxShadow: "0 8px 32px rgba(0, 0, 0, 0.12)",
+            position: "relative",
           }}
         >
           <img
@@ -90,10 +99,10 @@ const Research = () => {
           variants={fadeUp}
           style={{
             ...paragraphStyle,
-            padding: "1.5rem 0",
-            marginBottom: "2rem",
+            padding: "1.25rem 0",
+            marginBottom: "clamp(1.5rem, 6vh, 2rem)",
             maxWidth: "640px",
-            fontSize: "1.05em",
+            fontSize: "clamp(1rem, 3.8vw, 1.05rem)",
             lineHeight: 1.6,
           }}
         >
@@ -124,18 +133,21 @@ const Research = () => {
           style={{
             display: "flex",
             justifyContent: "center",
-            margin: "4rem 0 3rem",
+            margin: "clamp(3rem, 10vh, 4rem) 0 clamp(2rem, 6vh, 3rem)",
+            padding: "0 0.5rem",
           }}
         >
           <div
             style={{
               display: "inline-flex",
               alignItems: "center",
-              gap: "0.5rem",
-              padding: "0.75rem 1.25rem",
+              gap: "0.75rem",
+              padding:
+                "clamp(0.6rem, 2.5vw, 0.75rem) clamp(0.9rem, 3vw, 1.25rem)",
               background: "rgba(128, 128, 128, 0.04)",
               borderRadius: "12px",
               border: "1px solid rgba(128, 128, 128, 0.08)",
+              flexWrap: "wrap",
             }}
           >
             <span
@@ -152,8 +164,8 @@ const Research = () => {
               style={{
                 display: "flex",
                 gap: "0.5rem",
-                marginLeft: "0.5rem",
                 position: "relative",
+                minWidth: "220px",
               }}
             >
               <motion.div
@@ -189,11 +201,11 @@ const Research = () => {
           </div>
         </motion.div>
 
-        {/* ---------------- CONTENT (FIXED HEIGHT) ---------------- */}
+        {/* ---------------- CONTENT ---------------- */}
         <div
           style={{
             position: "relative",
-            minHeight: "320px",
+            minHeight: "clamp(260px, 40vh, 320px)",
           }}
         >
           <AnimatePresence mode="wait">
@@ -267,10 +279,10 @@ const Research = () => {
 /* ---------------- styles ---------------- */
 
 const paragraphStyle = {
-  fontSize: "1.15rem",
-  lineHeight: 1.85,
+  fontSize: "clamp(1rem, 3.8vw, 1.15rem)",
+  lineHeight: 1.8,
   opacity: 0.78,
-  marginBottom: "1.75rem",
+  marginBottom: "clamp(1.25rem, 5vh, 1.75rem)",
   letterSpacing: "-0.01em",
 };
 
@@ -286,6 +298,7 @@ const toggleButtonStyle = (active) => ({
   position: "relative",
   zIndex: 1,
   borderRadius: "8px",
+  whiteSpace: "nowrap",
 });
 
 const highlightStyle = {

@@ -23,7 +23,13 @@ const Contact = () => {
     <section
       style={{
         minHeight: "100vh",
-        padding: "8rem 2rem 4rem",
+
+        /* 🔑 NAVBAR-SAFE TOP SPACING */
+        paddingTop: "clamp(6.5rem, 12vh, 8.5rem)",
+        paddingBottom: "clamp(3rem, 8vh, 4rem)",
+        paddingLeft: "clamp(1.25rem, 5vw, 2rem)",
+        paddingRight: "clamp(1.25rem, 5vw, 2rem)",
+
         maxWidth: "700px",
         margin: "0 auto",
         color: "var(--text)",
@@ -34,9 +40,10 @@ const Contact = () => {
         <motion.h1
           variants={fadeUp}
           style={{
-            fontSize: "2.75rem",
+            fontSize: "clamp(2.1rem, 6vw, 2.75rem)",
             fontWeight: 700,
-            marginBottom: "1.5rem",
+            marginBottom: "1.25rem",
+            lineHeight: 1.1,
           }}
         >
           Contact
@@ -46,10 +53,10 @@ const Contact = () => {
         <motion.p
           variants={fadeUp}
           style={{
-            fontSize: "1.1rem",
-            lineHeight: 1.8,
+            fontSize: "clamp(1rem, 3.5vw, 1.1rem)",
+            lineHeight: 1.75,
             opacity: 0.85,
-            marginBottom: "3rem",
+            marginBottom: "clamp(2rem, 6vh, 3rem)",
           }}
         >
           I’m always open to discussions about research, collaborations, or
@@ -60,7 +67,7 @@ const Contact = () => {
         <motion.div
           variants={fadeUp}
           style={{
-            padding: "2rem",
+            padding: "clamp(1.25rem, 4vw, 2rem)",
             background: "var(--glass-bg)",
             border: "1px solid var(--glass-border)",
             borderRadius: "18px",
@@ -68,7 +75,7 @@ const Contact = () => {
           }}
         >
           {/* Email */}
-          <div style={{ marginBottom: "1.5rem" }}>
+          <div style={{ marginBottom: "1.25rem" }}>
             <div style={labelStyle}>Email</div>
             <a
               href="mailto:sowndaryakrishnanna@mines.edu"
@@ -79,7 +86,7 @@ const Contact = () => {
           </div>
 
           {/* Affiliation */}
-          <div style={{ marginBottom: "1.5rem" }}>
+          <div style={{ marginBottom: "1.25rem" }}>
             <div style={labelStyle}>Affiliation</div>
             <div style={valueStyle}>Department of Computer Science</div>
           </div>
@@ -90,8 +97,8 @@ const Contact = () => {
             <div
               style={{
                 display: "flex",
-                gap: "1.25rem",
-                marginTop: "0.5rem",
+                gap: "1rem",
+                marginTop: "0.6rem",
                 fontSize: "0.95rem",
                 flexWrap: "wrap",
               }}
@@ -128,7 +135,7 @@ const Contact = () => {
         <motion.div
           variants={fadeUp}
           style={{
-            marginTop: "3rem",
+            marginTop: "clamp(2rem, 6vh, 3rem)",
             fontSize: "0.9rem",
             opacity: 0.6,
           }}

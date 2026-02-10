@@ -3,11 +3,11 @@ import { useEffect, useState } from "react";
 /* ---------------- GIF REGISTRY ---------------- */
 
 const VISUALS = {
-  about2crashout: "/src/assets/gifs/status/about2crashout.gif",
-  crashingout: "/src/assets/gifs/status/crashingout.gif",
-  codenowork: "/src/assets/gifs/status/codenowork.gif",
-  researching: "/src/assets/gifs/status/researching.gif",
-  writingresearchpaper: "/src/assets/gifs/status/writingresearchpaper.gif",
+  about2crashout: "/gifs/status/about2crashout.gif",
+  crashingout: "/gifs/status/crashingout.gif",
+  codenowork: "/gifs/status/codenowork.gif",
+  researching: "/gifs/status/researching.gif",
+  writingresearchpaper: "/gifs/status/writingresearchpaper.gif",
 };
 
 /* ---------------- STATUS MODES ---------------- */

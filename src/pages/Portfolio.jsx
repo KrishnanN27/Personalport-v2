@@ -889,9 +889,9 @@ const Portfolio = () => {
 					transition: color 0.3s ease;
 				}
 
-				.experience-card:hover .experience-company {
-					color: rgba(255, 255, 255, 1);
-				}
+				// .experience-card:hover .experience-company {
+				// 	color: rgba(255, 255, 255, 1);
+				// }
 
 				.experience-role {
 					font-size: 1rem;

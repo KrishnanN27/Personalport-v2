@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
-import { Home, User, Microscope, Mail, Sun, Moon } from "lucide-react";
-import { useTheme } from "../context/ThemeContext";
-import { useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Atom } from "lucide-react";
+import { Atom, Briefcase, Home, Mail, Moon, Sun, User } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useTheme } from "../context/ThemeContext";
 
 const Navbar = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -19,6 +18,7 @@ const Navbar = () => {
   const navItems = [
     { path: "/", icon: Home, label: "Home" },
     { path: "/about", icon: User, label: "About" },
+    { path: "/portfolio", icon: Briefcase, label: "Portfolio" },
     { path: "/research", icon: Atom, label: "Research" },
     { path: "/contact", icon: Mail, label: "Contact" },
   ];

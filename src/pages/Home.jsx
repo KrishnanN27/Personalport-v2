@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import Status from "../components/widgets/Status";
 import NowPlaying from "../components/widgets/NowPlaying";
 import Widget from "../components/Widget";
+import headshot from "../assets/images/about/headshot.jpeg";
 
 /* ---------------- animation presets ---------------- */
 
@@ -66,6 +67,21 @@ const Tag = ({ children }) => (
 /* ---------------- component ---------------- */
 
 const Home = () => {
+  const linkStyle = {
+    textDecoration: "none",
+    color: "var(--text)",
+    fontWeight: 500,
+    transition: "text-shadow 0.3s ease",
+  };
+
+  const handleEnter = (e) => {
+    e.currentTarget.style.textShadow = "0 0 8px rgba(59,130,246,0.6)";
+  };
+
+  const handleLeave = (e) => {
+    e.currentTarget.style.textShadow = "none";
+  };
+
   return (
     <section
       style={{
@@ -73,6 +89,7 @@ const Home = () => {
         maxWidth: "1400px",
         margin: "0 auto",
         padding: "10rem 2rem 6rem",
+        position: "relative",
       }}
     >
       <motion.div
@@ -91,16 +108,15 @@ const Home = () => {
           <motion.h1
             variants={fadeUp}
             style={{
-              fontSize: "3.2rem",
+              fontSize: "clamp(2.6rem, 5vw, 3.8rem)",
               fontWeight: 600,
-              letterSpacing: "-0.025em",
+              letterSpacing: "-0.03em",
               marginBottom: "0.8rem",
-              lineHeight: 1.1,
-              opacity: 0.92,
+              lineHeight: 1.05,
             }}
           >
             Sowndarya{" "}
-            <span style={{ opacity: 0.6, fontWeight: 500 }}>Krishnan</span>
+            <span style={{ opacity: 0.55, fontWeight: 400 }}>Krishnan</span>
           </motion.h1>
 
           <motion.div
@@ -122,13 +138,32 @@ const Home = () => {
             style={{
               fontSize: "1.1rem",
               lineHeight: 1.7,
-              opacity: 0.78,
-              marginBottom: "1.4rem",
+              opacity: 0.75,
+              marginBottom: "1.8rem",
             }}
           >
-            I am a PhD student in Computer Science at Colorado School of Mines
-            and a research assistant working on scientific and computational
-            methods for complex physical systems.
+            PhD Student in Computer Science at{" "}
+            <a
+              href="https://www.mines.edu/"
+              target="_blank"
+              rel="noreferrer"
+              style={linkStyle}
+              onMouseEnter={handleEnter}
+              onMouseLeave={handleLeave}
+            >
+              Colorado School of Mines
+            </a>{" "}
+            ·{" "}
+            <a
+              href="https://cs.mines.edu/"
+              target="_blank"
+              rel="noreferrer"
+              style={linkStyle}
+              onMouseEnter={handleEnter}
+              onMouseLeave={handleLeave}
+            >
+              Computer Science
+            </a>
           </motion.p>
 
           <motion.p
@@ -136,14 +171,55 @@ const Home = () => {
             style={{
               fontSize: "1.05rem",
               lineHeight: 1.7,
-              opacity: 0.7,
+              opacity: 0.6,
+              marginBottom: "2.5rem",
             }}
           >
-            My research focuses on hybrid quantum–AI approaches for solving
-            partial differential equations, with applications in physics-based
-            modeling and simulation.
+            A space where I share my research, personal journey, and
+            photography.
           </motion.p>
+
+          {/* ===== Upgraded Portfolio Button ===== */}
+          <motion.a
+            variants={fadeUp}
+            href="/portfolio"
+            whileHover={{ y: -2 }}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.7rem",
+              padding: "0.55rem 1.2rem 0.55rem 0.55rem",
+              borderRadius: "999px",
+              textDecoration: "none",
+              color: "var(--text)",
+              fontWeight: 500,
+              background: "rgba(255,255,255,0.05)",
+              backdropFilter: "blur(12px)",
+              border: "1px solid rgba(59,130,246,0.3)",
+              transition: "all 0.25s ease",
+            }}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.borderColor = "rgba(59,130,246,0.6)")
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.borderColor = "rgba(59,130,246,0.3)")
+            }
+          >
+            <img
+              src={headshot}
+              alt="Sowndarya"
+              style={{
+                width: "26px",
+                height: "26px",
+                borderRadius: "50%",
+                objectFit: "cover",
+                border: "1.5px solid rgba(255,255,255,0.6)",
+              }}
+            />
+            View Portfolio
+          </motion.a>
         </div>
+        {/* ================= END LEFT COLUMN ================= */}
 
         {/* ================= RIGHT COLUMN ================= */}
         <motion.div
@@ -166,6 +242,7 @@ const Home = () => {
             </Widget>
           </motion.div>
         </motion.div>
+        {/* ================= END RIGHT COLUMN ================= */}
       </motion.div>
 
       {/* ---------- mobile stack ---------- */}

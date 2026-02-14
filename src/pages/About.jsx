@@ -6,7 +6,6 @@ import h2 from "../assets/images/about/h2.webp";
 import h3 from "../assets/images/about/h3.webp";
 import h4 from "../assets/images/about/h4.webp";
 
-
 const images = [h1, h2, h3, h4];
 
 const history = [
@@ -15,13 +14,13 @@ const history = [
   "At 18, I chose engineering because it was difficult.",
   "At 22, I learned that clean code is a form of respect.",
   "At 24, I understood that intelligence without discipline goes nowhere.",
-  "Now, I care about long-horizon work and meaningful problems."
+  "Now, I care about long-horizon work and meaningful problems.",
 ];
 
 const funFacts = [
   "I speak the Oldest living language in the world — Tamil (தமிழ்).",
   "Growing up, people have called me every version of my name — Sowndar, Sound, Krishna, Krish, Chris, Sowndarya Krishnan.",
-  "I come from a culture where last names aren’t really used — mine is simply N."
+  "I come from a culture where last names aren’t really used — mine is simply N.",
 ];
 
 const likes = [
@@ -36,11 +35,10 @@ const likes = [
   "Rewatching comfort shows for the 100th time",
 ];
 
-
 const quotes = [
   "If we don’t explain science to the public, others will fill the gap with nonsense.",
   "Don’t shine to be seen. Shine to help others see.",
-  "You can honor your parents and break their patterns. You can love your culture and question its traditions. You can respect your elders and challenge their beliefs."
+  "You can honor your parents and break their patterns. You can love your culture and question its traditions. You can respect your elders and challenge their beliefs.",
 ];
 
 const Section = ({ title, children }) => (
@@ -79,109 +77,106 @@ const About = () => {
         margin: "0 auto",
       }}
     >
-
-
       {/* DRAFT NOTICE */}
-<motion.div
-  initial={{ opacity: 0, y: -20 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.6 }}
-  style={{
-    marginBottom: "3rem",
-    padding: "1rem 1.5rem",
-    borderRadius: "16px",
-    border: "1px solid var(--glass-border)",
-    background: "rgba(255,255,255,0.04)",
-    backdropFilter: "blur(8px)",
-    fontSize: "0.9rem",
-    letterSpacing: "0.03em",
-    opacity: 0.75,
-  }}
->
-Please be kind — this portfolio is aggressively under construction.
-It will be good. Eventually.
-
-</motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        style={{
+          marginBottom: "3rem",
+          padding: "1rem 1.5rem",
+          borderRadius: "16px",
+          border: "1px solid var(--glass-border)",
+          background: "rgba(255,255,255,0.04)",
+          backdropFilter: "blur(8px)",
+          fontSize: "0.9rem",
+          letterSpacing: "0.03em",
+          opacity: 0.75,
+        }}
+      >
+        Please be kind — this draft is aggressively under construction. It will
+        be good. Eventually.
+      </motion.div>
 
       {/* HERO IMAGE ROTATOR */}
-     <div
-  style={{
-    height: "420px",
-    overflow: "hidden",
-    borderRadius: "28px",
-    border: "1px solid var(--glass-border)",
-    marginBottom: "8rem",
-    position: "relative",
-  }}
->
-  <AnimatePresence mode="wait">
-    <motion.img
-      key={imageIndex}
-      src={images[imageIndex]}
-      alt=""
-      initial={{ opacity: 0, scale: 1.05 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 1 }}
-      style={{
-        width: "100%",
-        height: "100%",
-        objectFit: "cover",
-        position: "absolute",
-      }}
-    />
-  </AnimatePresence>
+      <div
+        style={{
+          height: "420px",
+          overflow: "hidden",
+          borderRadius: "28px",
+          border: "1px solid var(--glass-border)",
+          marginBottom: "8rem",
+          position: "relative",
+        }}
+      >
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={imageIndex}
+            src={images[imageIndex]}
+            alt=""
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1 }}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              position: "absolute",
+            }}
+          />
+        </AnimatePresence>
 
-  {/* OVERLAY */}
-  <div
-  style={{
-    position: "absolute",
-    inset: 0,
-    background: `
+        {/* OVERLAY */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: `
       linear-gradient(
         to bottom,
         transparent 40%,
         var(--bg) 100%
       )
     `,
-    pointerEvents: "none",
-  }}
-/>
+            pointerEvents: "none",
+          }}
+        />
+      </div>
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        style={{ marginBottom: "10rem" }}
+      >
+        <p
+          style={{
+            fontSize: "1.2rem",
+            lineHeight: 1.8,
+            opacity: 0.9,
+          }}
+        >
+          Who am I ?? idek
+        </p>
 
-</div>
-<motion.div
-  initial={{ opacity: 0, y: 30 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.7 }}
-  style={{ marginBottom: "10rem" }}
->
-  <p
-    style={{
-      fontSize: "1.2rem",
-      lineHeight: 1.8,
-      opacity: 0.9,
-    }}
-  >
-    Who am I ?? idek
-  </p>
-
-  <p
-    style={{
-      marginTop: "2rem",
-      fontSize: "1.05rem",
-      lineHeight: 1.8,
-      opacity: 0.75,
-    }}
-  >
-    Most friends call me Krish or Chris.
-    If you’d like to pronounce my full name:
-    (Sown-dar-yeh Krish-nun).
-  </p>
-</motion.div>
+        <p
+          style={{
+            marginTop: "2rem",
+            fontSize: "1.05rem",
+            lineHeight: 1.8,
+            opacity: 0.75,
+          }}
+        >
+          Most friends call me Krish or Chris. If you’d like to pronounce my
+          full name: (Sown-dar-yeh Krish-nun).
+        </p>
+      </motion.div>
 
       {/* FUN FACTS */}
       <Section title="Fun Facts">
-        <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+        <div
+          style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}
+        >
           {funFacts.map((fact, i) => (
             <motion.p
               key={i}
@@ -235,10 +230,8 @@ It will be good. Eventually.
         </div>
       </Section>
 
-
-
       {/* QUOTES */}
-<Section title="Quiet Influences">
+      <Section title="Quiet Influences">
         <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
           {quotes.map((quote, i) => (
             <motion.p

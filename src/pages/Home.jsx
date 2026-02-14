@@ -105,6 +105,7 @@ const Home = () => {
       >
         {/* ================= LEFT COLUMN ================= */}
         <div style={{ maxWidth: 720 }}>
+          {/* Name */}
           <motion.h1
             variants={fadeUp}
             style={{
@@ -116,9 +117,19 @@ const Home = () => {
             }}
           >
             Sowndarya{" "}
-            <span style={{ opacity: 0.55, fontWeight: 400 }}>Krishnan</span>
+            <span style={{ fontWeight: 600 }}>
+              <span
+                style={{
+                  color: "rgba(128,128,128,0.85)", // soft grey highlight
+                }}
+              >
+                Krish
+              </span>
+              nan
+            </span>
           </motion.h1>
 
+          {/* Tags */}
           <motion.div
             variants={container}
             style={{
@@ -133,6 +144,7 @@ const Home = () => {
             <Tag>Former Software Engineer</Tag>
           </motion.div>
 
+          {/* Institution */}
           <motion.p
             variants={fadeUp}
             style={{
@@ -166,6 +178,7 @@ const Home = () => {
             </a>
           </motion.p>
 
+          {/* Description */}
           <motion.p
             variants={fadeUp}
             style={{
@@ -179,7 +192,7 @@ const Home = () => {
             photography.
           </motion.p>
 
-          {/* ===== Upgraded Portfolio Button ===== */}
+          {/* Portfolio Button */}
           <motion.a
             variants={fadeUp}
             href="/portfolio"
@@ -245,7 +258,7 @@ const Home = () => {
         {/* ================= END RIGHT COLUMN ================= */}
       </motion.div>
 
-      {/* ---------- mobile stack ---------- */}
+      {/* Mobile Stack */}
       <style>
         {`
           @media (max-width: 900px) {

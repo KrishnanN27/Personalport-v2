@@ -23,44 +23,30 @@ const Contact = () => {
     <section
       style={{
         minHeight: "100vh",
-        paddingTop: "clamp(6.5rem, 12vh, 8.5rem)",
+        paddingTop: "clamp(7rem, 14vh, 9rem)",
         paddingBottom: "clamp(3rem, 8vh, 4rem)",
         paddingLeft: "clamp(1.25rem, 5vw, 2rem)",
         paddingRight: "clamp(1.25rem, 5vw, 2rem)",
-        maxWidth: "700px",
+        maxWidth: "680px",
         margin: "0 auto",
         color: "var(--text)",
       }}
     >
       <motion.div variants={container} initial="hidden" animate="show">
-        {/* Heading */}
-        <motion.h1
-          variants={fadeUp}
-          style={{
-            fontSize: "clamp(2.1rem, 6vw, 2.75rem)",
-            fontWeight: 700,
-            marginBottom: "1.25rem",
-            lineHeight: 1.1,
-          }}
-        >
-          Contact
-        </motion.h1>
-
-        {/* Intro */}
+        {/* Intro (no title now) */}
         <motion.p
           variants={fadeUp}
           style={{
             fontSize: "clamp(1rem, 3.5vw, 1.1rem)",
             lineHeight: 1.75,
             opacity: 0.85,
-            marginBottom: "clamp(2rem, 6vh, 3rem)",
+            marginBottom: "2.5rem",
           }}
         >
-          I’m always open to discussions about research, collaborations, or
-          interesting problems. Feel free to reach out.
+          If you'd like to reach out, here are a few ways to connect.
         </motion.p>
 
-        {/* Card */}
+        {/* Glass Card */}
         <motion.div
           variants={fadeUp}
           style={{
@@ -72,7 +58,7 @@ const Contact = () => {
           }}
         >
           {/* Academic Email */}
-          <div style={{ marginBottom: "1.25rem" }}>
+          <div style={{ marginBottom: "1.5rem" }}>
             <div style={labelStyle}>Academic Email</div>
             <a
               href="mailto:sowndaryakrishnanna@mines.edu"
@@ -83,69 +69,50 @@ const Contact = () => {
           </div>
 
           {/* Personal Email */}
-          <div style={{ marginBottom: "1.25rem" }}>
+          <div style={{ marginBottom: "1.5rem" }}>
             <div style={labelStyle}>Personal Email</div>
             <a href="mailto:krishnaofficial27@gmail.com" style={valueLinkStyle}>
               krishnaofficial27@gmail.com
             </a>
           </div>
 
-          {/* Affiliation */}
-          <div style={{ marginBottom: "1.25rem" }}>
-            <div style={labelStyle}>Affiliation</div>
-            <div style={valueStyle}>Department of Computer Science</div>
+          {/* GitHub */}
+          <div style={{ marginBottom: "1.5rem" }}>
+            <div style={labelStyle}>GitHub</div>
+            <a
+              href="https://github.com/KrishnanN27"
+              target="_blank"
+              rel="noreferrer"
+              style={valueLinkStyle}
+            >
+              github.com/KrishnanN27
+            </a>
           </div>
 
-          {/* Links */}
+          {/* LinkedIn */}
           <div>
-            <div style={labelStyle}>Links</div>
-            <div
-              style={{
-                display: "flex",
-                gap: "1rem",
-                marginTop: "0.6rem",
-                fontSize: "0.95rem",
-                flexWrap: "wrap",
-              }}
+            <div style={labelStyle}>LinkedIn</div>
+            <a
+              href="https://www.linkedin.com/in/krishnan-n/"
+              target="_blank"
+              rel="noreferrer"
+              style={valueLinkStyle}
             >
-              <a
-                href="https://scholar.google.com"
-                target="_blank"
-                rel="noreferrer"
-                style={linkStyle}
-              >
-                Google Scholar
-              </a>
-              <a
-                href="https://github.com/krishnanN27"
-                target="_blank"
-                rel="noreferrer"
-                style={linkStyle}
-              >
-                GitHub
-              </a>
-              <a
-                href="https://linkedin.com/in/krishnan-n"
-                target="_blank"
-                rel="noreferrer"
-                style={linkStyle}
-              >
-                LinkedIn
-              </a>
-            </div>
+              linkedin.com/in/krishnan-n/
+            </a>
           </div>
         </motion.div>
 
-        {/* Soft close */}
+        {/* Soft close line */}
         <motion.div
           variants={fadeUp}
           style={{
-            marginTop: "clamp(2rem, 6vh, 3rem)",
+            marginTop: "2.5rem",
             fontSize: "0.9rem",
             opacity: 0.6,
           }}
         >
-          I usually reply right away.
+          I usually reply promptly.
         </motion.div>
       </motion.div>
     </section>
@@ -155,24 +122,15 @@ const Contact = () => {
 /* ---------- styles ---------- */
 
 const labelStyle = {
-  opacity: 0.6,
+  opacity: 0.55,
   fontSize: "0.85rem",
-};
-
-const valueStyle = {
-  fontSize: "1rem",
-  fontWeight: 500,
+  marginBottom: "0.35rem",
 };
 
 const valueLinkStyle = {
-  ...valueStyle,
+  fontSize: "1rem",
+  fontWeight: 500,
   color: "var(--text)",
-  textDecoration: "none",
-};
-
-const linkStyle = {
-  color: "var(--text)",
-  opacity: 0.8,
   textDecoration: "none",
   transition: "opacity 0.2s ease",
 };

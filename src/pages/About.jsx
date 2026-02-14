@@ -94,8 +94,8 @@ const About = () => {
           opacity: 0.75,
         }}
       >
-        Please be kind — this draft is aggressively under construction. It will
-        be good. Eventually.
+        Please be nice — this About me page is aggressively under construction.
+        It will be good. Eventually.
       </motion.div>
 
       {/* HERO IMAGE ROTATOR */}

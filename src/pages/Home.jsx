@@ -150,7 +150,7 @@ const Home = () => {
             style={{
               fontSize: "1.1rem",
               lineHeight: 1.7,
-              opacity: 0.75,
+              opacity: 0.85,
               marginBottom: "1.8rem",
             }}
           >
@@ -159,9 +159,7 @@ const Home = () => {
               href="https://www.mines.edu/"
               target="_blank"
               rel="noreferrer"
-              style={linkStyle}
-              onMouseEnter={handleEnter}
-              onMouseLeave={handleLeave}
+              className="mines-link"
             >
               Colorado School of Mines
             </a>{" "}
@@ -170,9 +168,7 @@ const Home = () => {
               href="https://cs.mines.edu/"
               target="_blank"
               rel="noreferrer"
-              style={linkStyle}
-              onMouseEnter={handleEnter}
-              onMouseLeave={handleLeave}
+              className="cs-link"
             >
               Computer Science
             </a>
@@ -188,8 +184,7 @@ const Home = () => {
               marginBottom: "2.5rem",
             }}
           >
-            A space where I share my research, personal journey, and
-            photography.
+            A space where I share my personal journey, research and photography.
           </motion.p>
 
           {/* Portfolio Button */}
@@ -266,6 +261,21 @@ const Home = () => {
               grid-template-columns: 1fr !important;
             }
           }
+
+.mines-link,
+.cs-link {
+  text-decoration: none;
+  font-weight: 500;
+  color: #2f6fe4; /* slightly darker than #3b82f6 */
+  transition: color 0.25s ease;
+}
+
+.mines-link:hover,
+.cs-link:hover {
+  color: #3b82f6; /* original blue on hover */
+}
+
+
         `}
       </style>
     </section>

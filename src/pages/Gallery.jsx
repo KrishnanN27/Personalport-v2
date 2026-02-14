@@ -26,287 +26,133 @@ const images = [
 ];
 
 /* ---------- COMPONENT ---------- */
-
 const Gallery = () => {
   const [activeIndex, setActiveIndex] = useState(null);
-  const activeImage = activeIndex !== null ? images[activeIndex] : null;
-
-  /* ---------- Arrow Key Navigation ---------- */
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const handleKey = (e) => {
-      if (activeIndex === null) return;
-
-      if (e.key === "ArrowRight") {
-        setActiveIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-      }
-
-      if (e.key === "ArrowLeft") {
-        setActiveIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-      }
-
-      if (e.key === "Escape") setActiveIndex(null);
-    };
-
-    window.addEventListener("keydown", handleKey);
-    return () => window.removeEventListener("keydown", handleKey);
-  }, [activeIndex]);
+    const check = () => setIsMobile(window.innerWidth < 900);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   return (
     <section
       style={{
-        minHeight: "100vh",
-        maxWidth: "1200px",
-        margin: "0 auto",
-        paddingTop: "clamp(7rem, 14vh, 11rem)",
-
-        paddingBottom: "clamp(3rem, 8vh, 5rem)",
-        paddingInline: "clamp(1rem, 4vw, 2rem)",
-        position: "relative",
-        color: "var(--text)",
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+        marginTop: "90px",
+        padding: "clamp(3rem, 6vh, 6rem) 1.2rem",
       }}
     >
-      {/* ---------- QUOTE SECTION ---------- */}
-
-      <motion.div
-        initial={{ opacity: 0, y: 25 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-        style={{
-          width: "100%", // 👈 match gallery width
-          margin: "0 0 clamp(1rem, 2.5vh, 2rem)",
-
-          padding: "clamp(1.2rem, 3vw, 2.4rem)",
-
-          borderRadius: "18px",
-          background: "rgba(255,255,255,0.04)",
-          backdropFilter: "blur(22px)",
-          WebkitBackdropFilter: "blur(22px)",
-          border: "1px solid rgba(255,255,255,0.08)",
-          boxShadow: "0 10px 40px rgba(0,0,0,0.15)",
-          position: "relative",
-          textAlign: "center",
-        }}
-      >
-        {/* subtle glossy top shine */}
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            height: "40%",
-            borderRadius: "18px",
-            background:
-              "linear-gradient(to bottom, rgba(255,255,255,0.12), transparent)",
-            pointerEvents: "none",
-            opacity: 0.3,
-          }}
-        />
-
-        <motion.blockquote
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-          style={{
-            fontSize: "clamp(1.15rem, 2.4vw, 1.5rem)",
-
-            fontFamily:
-              "'Crimson Pro', 'Crimson Text', 'Libre Baskerville', serif",
-            fontStyle: "italic",
-            lineHeight: 1.7,
-            margin: 0,
-            position: "relative",
-            zIndex: 1,
-            opacity: 0.92,
-          }}
-        >
-          “Medicine, law, business, engineering — these are noble pursuits and
-          necessary to sustain life.{" "}
-          <span
-            style={{
-              fontFamily: "inherit",
-              fontStyle: "inherit",
-              fontWeight: "inherit",
-              fontSize: "inherit",
-              lineHeight: "inherit",
-              letterSpacing: "inherit",
-              color: "#8b5cf6",
-            }}
-          >
-            But poetry, beauty, romance, love —
-          </span>{" "}
-          these are what we stay alive for.”
-        </motion.blockquote>
-
-        <motion.footer
-          initial={{ opacity: 0, y: 6 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-          style={{
-            marginTop: "clamp(1rem, 2vh, 1.6rem)",
-
-            fontSize: "clamp(0.7rem, 1vw, 0.85rem)",
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-            opacity: 0.55,
-            position: "relative",
-            zIndex: 1,
-          }}
-        >
-          — Dead Poets Society
-        </motion.footer>
-      </motion.div>
-
-      {/* ---------- RESPONSIVE GRID ---------- */}
-
       <div
         style={{
+          width: "100%",
+          maxWidth: "1200px",
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-          gap: "clamp(0.75rem, 2vw, 1.5rem)",
+          gridTemplateColumns: isMobile ? "1fr" : "260px minmax(0, 1fr)",
+          gap: "clamp(2rem, 4vw, 4rem)",
+          alignItems: "start",
         }}
       >
-        {images.map((img, i) => (
-          <motion.div
-            key={img.src}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{
-              duration: 0.6,
-              delay: i * 0.04,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            style={{
-              overflow: "hidden",
-              borderRadius: "12px",
-            }}
-          >
-            <motion.img
-              layoutId={img.src}
-              src={img.src}
-              loading="lazy"
-              onClick={() => setActiveIndex(i)}
-              whileHover={{ scale: 1.04 }}
-              transition={{ duration: 0.4 }}
+        {/* ---------- QUOTE ---------- */}
+
+        <div
+          style={{
+            position: isMobile ? "relative" : "sticky",
+            top: isMobile ? "0" : "120px",
+            alignSelf: "start",
+            marginBottom: isMobile ? "2rem" : "0",
+          }}
+        >
+          <div style={{ maxWidth: isMobile ? "100%" : "240px" }}>
+            <blockquote
               style={{
-                width: "100%",
-                aspectRatio: "4 / 5",
-                objectFit: "cover",
-                display: "block",
-                cursor: "pointer",
+                fontSize: isMobile
+                  ? "clamp(1.2rem, 4.5vw, 1.5rem)" // mobile
+                  : "clamp(1.05rem, 1.4vw, 1.3rem)", // desktop (slightly larger but controlled)
+                fontFamily:
+                  "'Crimson Pro', 'Crimson Text', 'Libre Baskerville', serif",
+                lineHeight: 1.65,
+                margin: 0,
               }}
-            />
-          </motion.div>
-        ))}
+            >
+              “Medicine, law, business, engineering — these are noble pursuits
+              and necessary to sustain life.{" "}
+              <span
+                style={{
+                  color: "#8b5cf6",
+                  fontFamily: "inherit",
+                  fontSize: "inherit",
+                  fontWeight: "inherit",
+                  fontStyle: "inherit",
+                  letterSpacing: "inherit",
+                  lineHeight: "inherit",
+                }}
+              >
+                poetry, beauty, romance, love —
+              </span>{" "}
+              these are what we stay alive for.”
+            </blockquote>
+
+            <footer
+              style={{
+                marginTop: "1rem",
+                fontSize: "0.65rem",
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                opacity: 0.55,
+              }}
+            >
+              — Dead Poets Society
+            </footer>
+          </div>
+        </div>
+
+        {/* ---------- GALLERY GRID ---------- */}
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns:
+              "repeat(auto-fit, minmax(min(260px, 100%), 1fr))",
+            gap: "clamp(1rem, 2vw, 1.5rem)",
+          }}
+        >
+          {images.map((img, i) => (
+            <motion.div
+              key={img.src}
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.03 }}
+              style={{
+                overflow: "hidden",
+                borderRadius: "14px",
+              }}
+            >
+              <motion.img
+                src={img.src}
+                loading="lazy"
+                onClick={() => setActiveIndex(i)}
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.35 }}
+                style={{
+                  width: "100%",
+                  aspectRatio: "4 / 5",
+                  objectFit: "cover",
+                  display: "block",
+                  cursor: "pointer",
+                }}
+              />
+            </motion.div>
+          ))}
+        </div>
       </div>
-
-      {/* ---------- LIGHTBOX ---------- */}
-
-      <AnimatePresence>
-        {activeImage && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setActiveIndex(null)}
-            style={{
-              position: "fixed",
-              inset: 0,
-              background: "rgba(0,0,0,0.95)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              padding: "clamp(1rem, 4vw, 3rem)",
-              zIndex: 9999,
-            }}
-          >
-            <motion.img
-              layoutId={activeImage.src}
-              src={activeImage.src}
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              transition={{ duration: 0.4 }}
-              onClick={(e) => e.stopPropagation()}
-              style={{
-                maxWidth: "100%",
-                maxHeight: "90vh",
-                objectFit: "contain",
-                borderRadius: "8px",
-              }}
-            />
-
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                setActiveIndex((prev) =>
-                  prev === 0 ? images.length - 1 : prev - 1,
-                );
-              }}
-              style={arrowStyle("left")}
-            >
-              ‹
-            </button>
-
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                setActiveIndex((prev) =>
-                  prev === images.length - 1 ? 0 : prev + 1,
-                );
-              }}
-              style={arrowStyle("right")}
-            >
-              ›
-            </button>
-
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                setActiveIndex(null);
-              }}
-              style={closeStyle}
-            >
-              ✕
-            </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   );
-};
-
-/* ---------- BUTTON STYLES ---------- */
-
-const arrowStyle = (side) => ({
-  position: "absolute",
-  top: "50%",
-  [side]: "2rem",
-  transform: "translateY(-50%)",
-  fontSize: "2rem",
-  background: "rgba(255,255,255,0.1)",
-  border: "none",
-  color: "#fff",
-  width: "48px",
-  height: "48px",
-  borderRadius: "50%",
-  cursor: "pointer",
-});
-
-const closeStyle = {
-  position: "absolute",
-  top: "1.5rem",
-  right: "1.5rem",
-  fontSize: "1.2rem",
-  background: "rgba(255,255,255,0.1)",
-  border: "none",
-  color: "#fff",
-  width: "38px",
-  height: "38px",
-  borderRadius: "50%",
-  cursor: "pointer",
 };
 
 export default Gallery;

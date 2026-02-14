@@ -22,60 +22,65 @@ export default function NowPlaying() {
   if (!data) return <div style={{ opacity: 0.6 }}>Loading…</div>;
 
   const current = data.current?.item;
+  const lastPlayed = data.recent?.[0]?.track;
   const topTracks = data.top?.slice(0, 5) || [];
 
-  return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
-      {/* ================= NOW PLAYING ================= */}
-      <div>
-        <div
-          style={{
-            fontSize: "0.75rem",
-            textTransform: "uppercase",
-            letterSpacing: "0.08em",
-            opacity: 0.5,
-            marginBottom: "0.6rem",
-          }}
-        >
-          Now Playing
-        </div>
+  const featuredTrack = current || lastPlayed;
 
-        {current ? (
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+      {/* ================= FEATURED (Now or Last Played) ================= */}
+      {featuredTrack && (
+        <div>
+          <div
+            style={{
+              fontSize: "0.75rem",
+              textTransform: "uppercase",
+              letterSpacing: "0.08em",
+              opacity: 0.5,
+              marginBottom: "0.8rem",
+            }}
+          >
+            {current ? "Now Playing" : "Last Played"}
+          </div>
+
           <a
-            href={current.external_urls.spotify}
+            href={featuredTrack.external_urls.spotify}
             target="_blank"
             rel="noopener noreferrer"
             style={{
               display: "flex",
-              gap: "0.85rem",
+              gap: "1rem",
               textDecoration: "none",
               color: "inherit",
               alignItems: "center",
             }}
           >
             <img
-              src={current.album.images[0]?.url}
+              src={featuredTrack.album.images[0]?.url}
               alt="album"
               style={{
-                width: 64,
-                height: 64,
-                borderRadius: "10px",
+                width: 80,
+                height: 80,
+                borderRadius: "12px",
                 objectFit: "cover",
+                boxShadow: "0 6px 18px rgba(0,0,0,0.25)",
               }}
             />
+
             <div>
-              <div style={{ fontWeight: 600 }}>{current.name}</div>
-              <div style={{ opacity: 0.7, fontSize: "0.9rem" }}>
-                {current.artists.map((a) => a.name).join(", ")}
+              <div style={{ fontWeight: 600, fontSize: "1rem" }}>
+                {featuredTrack.name}
+              </div>
+              <div style={{ opacity: 0.7 }}>
+                {featuredTrack.artists.map((a) => a.name).join(", ")}
               </div>
             </div>
           </a>
-        ) : (
-          <div style={{ opacity: 0.5 }}>Nothing playing right now</div>
-        )}
-      </div>
+        </div>
+      )}
 
-      {/* ================= TOP TRACKS ================= */}
+      {/* ================= TOP TRACKS GRID ================= */}
       {topTracks.length > 0 && (
         <div>
           <div
@@ -84,14 +89,18 @@ export default function NowPlaying() {
               textTransform: "uppercase",
               letterSpacing: "0.08em",
               opacity: 0.5,
-              marginBottom: "0.6rem",
+              marginBottom: "0.8rem",
             }}
           >
             Top Tracks
           </div>
 
           <div
-            style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fill, minmax(70px, 1fr))",
+              gap: "0.8rem",
+            }}
           >
             {topTracks.map((track) => (
               <a
@@ -99,14 +108,18 @@ export default function NowPlaying() {
                 href={track.external_urls.spotify}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{
-                  textDecoration: "none",
-                  color: "inherit",
-                  opacity: 0.85,
-                  transition: "opacity 0.2s ease",
-                }}
+                style={{ display: "block" }}
               >
-                {track.name}
+                <img
+                  src={track.album.images[0]?.url}
+                  alt="album"
+                  style={{
+                    width: "100%",
+                    borderRadius: "10px",
+                    objectFit: "cover",
+                    transition: "transform 0.2s ease",
+                  }}
+                />
               </a>
             ))}
           </div>

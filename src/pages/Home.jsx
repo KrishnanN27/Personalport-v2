@@ -155,7 +155,7 @@ const Home = () => {
           }}
         >
           <motion.div variants={fadeUp}>
-            <Widget title="Now Playing">
+            <Widget title="Spotify Now">
               <NowPlaying />
             </Widget>
           </motion.div>

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import Status from "../components/widgets/Status";
+import NowPlaying from "../components/widgets/NowPlaying";
 import Widget from "../components/Widget";
 
 /* ---------------- animation presets ---------------- */
@@ -145,10 +146,25 @@ const Home = () => {
         </div>
 
         {/* ================= RIGHT COLUMN ================= */}
-        <motion.div variants={fadeUp}>
-          <Widget title="Status">
-            <Status />
-          </Widget>
+        <motion.div
+          variants={container}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "1.5rem",
+          }}
+        >
+          <motion.div variants={fadeUp}>
+            <Widget title="Status">
+              <Status />
+            </Widget>
+          </motion.div>
+
+          <motion.div variants={fadeUp}>
+            <Widget title="Now Playing">
+              <NowPlaying />
+            </Widget>
+          </motion.div>
         </motion.div>
       </motion.div>
 

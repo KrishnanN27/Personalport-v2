@@ -6,7 +6,6 @@ export default function NowPlaying() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Always hit production API
         const res = await fetch("https://www.sknk.fyi/api/now-playing");
         const json = await res.json();
         setData(json);
@@ -16,53 +15,103 @@ export default function NowPlaying() {
     };
 
     fetchData();
-    const interval = setInterval(fetchData, 10000); // refresh every 10s
+    const interval = setInterval(fetchData, 10000);
     return () => clearInterval(interval);
   }, []);
 
-  if (!data) return <div>Loading...</div>;
+  if (!data) return <div style={{ opacity: 0.6 }}>Loading…</div>;
 
-  /* ================= CURRENTLY PLAYING ================= */
-  if (data.current && data.current.item) {
-    const track = data.current.item;
+  const current = data.current?.item;
+  const topTracks = data.top?.slice(0, 5) || [];
 
-    return (
-      <div style={{ display: "flex", gap: "0.75rem" }}>
-        <img
-          src={track.album.images[0]?.url}
-          alt="album"
-          style={{
-            width: 60,
-            height: 60,
-            borderRadius: "8px",
-            objectFit: "cover",
-          }}
-        />
-        <div>
-          <div style={{ fontWeight: 600 }}>{track.name}</div>
-          <div style={{ opacity: 0.7 }}>
-            {track.artists.map((a) => a.name).join(", ")}
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  /* ================= TOP TRACKS FALLBACK ================= */
-  if (data.top) {
-    return (
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+      {/* ================= NOW PLAYING ================= */}
       <div>
-        <div style={{ fontWeight: 600, marginBottom: "0.5rem" }}>
-          Top Tracks
+        <div
+          style={{
+            fontSize: "0.75rem",
+            textTransform: "uppercase",
+            letterSpacing: "0.08em",
+            opacity: 0.5,
+            marginBottom: "0.6rem",
+          }}
+        >
+          Now Playing
         </div>
-        {data.top.slice(0, 5).map((t) => (
-          <div key={t.id} style={{ opacity: 0.8 }}>
-            {t.name}
-          </div>
-        ))}
-      </div>
-    );
-  }
 
-  return <div>No Spotify data available.</div>;
+        {current ? (
+          <a
+            href={current.external_urls.spotify}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "flex",
+              gap: "0.85rem",
+              textDecoration: "none",
+              color: "inherit",
+              alignItems: "center",
+            }}
+          >
+            <img
+              src={current.album.images[0]?.url}
+              alt="album"
+              style={{
+                width: 64,
+                height: 64,
+                borderRadius: "10px",
+                objectFit: "cover",
+              }}
+            />
+            <div>
+              <div style={{ fontWeight: 600 }}>{current.name}</div>
+              <div style={{ opacity: 0.7, fontSize: "0.9rem" }}>
+                {current.artists.map((a) => a.name).join(", ")}
+              </div>
+            </div>
+          </a>
+        ) : (
+          <div style={{ opacity: 0.5 }}>Nothing playing right now</div>
+        )}
+      </div>
+
+      {/* ================= TOP TRACKS ================= */}
+      {topTracks.length > 0 && (
+        <div>
+          <div
+            style={{
+              fontSize: "0.75rem",
+              textTransform: "uppercase",
+              letterSpacing: "0.08em",
+              opacity: 0.5,
+              marginBottom: "0.6rem",
+            }}
+          >
+            Top Tracks
+          </div>
+
+          <div
+            style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
+          >
+            {topTracks.map((track) => (
+              <a
+                key={track.id}
+                href={track.external_urls.spotify}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  textDecoration: "none",
+                  color: "inherit",
+                  opacity: 0.85,
+                  transition: "opacity 0.2s ease",
+                }}
+              >
+                {track.name}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }

@@ -64,24 +64,9 @@ const Tag = ({ children }) => (
   </motion.span>
 );
 
-/* ---------------- component ---------------- */
+/* ---------------- Home component ---------------- */
 
 const Home = () => {
-  const linkStyle = {
-    textDecoration: "none",
-    color: "var(--text)",
-    fontWeight: 500,
-    transition: "text-shadow 0.3s ease",
-  };
-
-  const handleEnter = (e) => {
-    e.currentTarget.style.textShadow = "0 0 8px rgba(59,130,246,0.6)";
-  };
-
-  const handleLeave = (e) => {
-    e.currentTarget.style.textShadow = "none";
-  };
-
   return (
     <section
       style={{
@@ -118,13 +103,7 @@ const Home = () => {
           >
             Sowndarya{" "}
             <span style={{ fontWeight: 600 }}>
-              <span
-                style={{
-                  color: "rgba(128,128,128,0.85)", // soft grey highlight
-                }}
-              >
-                Krish
-              </span>
+              <span style={{ color: "rgba(128,128,128,0.85)" }}>Krish</span>
               nan
             </span>
           </motion.h1>
@@ -181,53 +160,106 @@ const Home = () => {
               fontSize: "1.05rem",
               lineHeight: 1.7,
               opacity: 0.6,
-              marginBottom: "2.5rem",
+              marginBottom: "2.8rem",
             }}
           >
-            A space where I share my personal journey, research and photography.
+            A space where I share my personal journey, research, and
+            photography.
           </motion.p>
 
-          {/* Portfolio Button */}
-          <motion.a
+          {/* Action Buttons */}
+          <motion.div
             variants={fadeUp}
-            href="/portfolio"
-            whileHover={{ y: -2 }}
             style={{
-              display: "inline-flex",
+              display: "flex",
+              gap: "1.2rem",
+              flexWrap: "wrap",
               alignItems: "center",
-              gap: "0.7rem",
-              padding: "0.55rem 1.2rem 0.55rem 0.55rem",
-              borderRadius: "999px",
-              textDecoration: "none",
-              color: "var(--text)",
-              fontWeight: 500,
-              background: "rgba(255,255,255,0.05)",
-              backdropFilter: "blur(12px)",
-              border: "1px solid rgba(59,130,246,0.3)",
-              transition: "all 0.25s ease",
             }}
-            onMouseEnter={(e) =>
-              (e.currentTarget.style.borderColor = "rgba(59,130,246,0.6)")
-            }
-            onMouseLeave={(e) =>
-              (e.currentTarget.style.borderColor = "rgba(59,130,246,0.3)")
-            }
           >
-            <img
-              src={headshot}
-              alt="Sowndarya"
+            {/* Portfolio Button - Glass with Glow */}
+            <motion.a
+              href="/portfolio"
+              className="portfolio-btn"
+              whileHover={{ y: -2, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               style={{
-                width: "26px",
-                height: "26px",
-                borderRadius: "50%",
-                objectFit: "cover",
-                border: "1.5px solid rgba(255,255,255,0.6)",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.7rem",
+                padding: "0.65rem 1.5rem 0.65rem 0.65rem",
+                borderRadius: "999px",
+                textDecoration: "none",
+                color: "var(--text)",
+                fontWeight: 600,
+                fontSize: "0.95rem",
+                position: "relative",
+                overflow: "hidden",
+                background: "var(--glass-bg)",
+                backdropFilter: "blur(12px)",
+                border: "1.5px solid var(--glass-border)",
+                transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
               }}
-            />
-            View Portfolio
-          </motion.a>
+            >
+              <img
+                src={headshot}
+                alt="Sowndarya"
+                style={{
+                  width: "28px",
+                  height: "28px",
+                  borderRadius: "50%",
+                  objectFit: "cover",
+                  border: "2px solid var(--glass-border)",
+                }}
+              />
+              View Portfolio
+            </motion.a>
+
+            {/* Schedule Meeting - Glass with Neon Border */}
+            <motion.a
+              href="https://calendar.app.google/QECW5xXxB1YGAGnu9"
+              target="_blank"
+              rel="noreferrer"
+              className="schedule-btn"
+              whileHover={{ y: -2, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.5rem",
+                padding: "0.65rem 1.6rem",
+                borderRadius: "999px",
+                textDecoration: "none",
+                fontWeight: 600,
+                fontSize: "0.95rem",
+                letterSpacing: "0.01em",
+                color: "var(--text)",
+                position: "relative",
+                background: "var(--glass-bg)",
+                backdropFilter: "blur(12px)",
+                border: "1.5px solid var(--glass-border)",
+                transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+              }}
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg>
+              Schedule a Meeting
+            </motion.a>
+          </motion.div>
         </div>
-        {/* ================= END LEFT COLUMN ================= */}
 
         {/* ================= RIGHT COLUMN ================= */}
         <motion.div
@@ -250,10 +282,8 @@ const Home = () => {
             </Widget>
           </motion.div>
         </motion.div>
-        {/* ================= END RIGHT COLUMN ================= */}
       </motion.div>
 
-      {/* Mobile Stack */}
       <style>
         {`
           @media (max-width: 900px) {
@@ -262,20 +292,100 @@ const Home = () => {
             }
           }
 
-.mines-link,
-.cs-link {
-  text-decoration: none;
-  font-weight: 500;
-  color: #2f6fe4; /* slightly darker than #3b82f6 */
-  transition: color 0.25s ease;
-}
+          .mines-link,
+          .cs-link {
+            text-decoration: none;
+            font-weight: 500;
+            color: #2f6fe4;
+            transition: color 0.25s ease;
+          }
 
-.mines-link:hover,
-.cs-link:hover {
-  color: #3b82f6; /* original blue on hover */
-}
+          .mines-link:hover,
+          .cs-link:hover {
+            color: #3b82f6;
+          }
 
+          /* Portfolio Button Hover Effects */
+          .portfolio-btn {
+            box-shadow: 0 0 0 rgba(255, 255, 255, 0),
+                        0 2px 8px rgba(0, 0, 0, 0.1);
+          }
 
+          .portfolio-btn:hover {
+            background: var(--glass-bg) !important;
+            border-color: var(--text) !important;
+            box-shadow: 0 0 25px var(--glass-border),
+                        0 0 50px var(--glass-border),
+                        0 0 75px var(--glass-border),
+                        0 4px 16px rgba(0, 0, 0, 0.2) !important;
+            transform: translateY(-2px) scale(1.02) !important;
+          }
+
+          .portfolio-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, var(--glass-border) 0%, transparent 70%);
+            border-radius: 999px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+          }
+
+          .portfolio-btn:hover::before {
+            opacity: 0.5;
+          }
+
+          /* Schedule Button Hover Effects */
+          .schedule-btn {
+            box-shadow: 0 0 0 rgba(255, 255, 255, 0),
+                        0 2px 8px rgba(0, 0, 0, 0.1);
+          }
+
+          .schedule-btn:hover {
+            background: var(--glass-bg) !important;
+            border-color: var(--text) !important;
+            box-shadow: 0 0 20px var(--glass-border),
+                        0 0 40px var(--glass-border),
+                        inset 0 0 20px var(--glass-border) !important;
+            transform: translateY(-2px) scale(1.02) !important;
+          }
+
+          .schedule-btn::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: var(--glass-border);
+            border-radius: 999px;
+            z-index: -1;
+            opacity: 0;
+            filter: blur(8px);
+            transition: opacity 0.3s ease;
+          }
+
+          .schedule-btn:hover::after {
+            opacity: 0.6;
+          }
+
+          /* Pulsing glow animation */
+          @keyframes pulse-glow {
+            0%, 100% {
+              filter: brightness(1);
+            }
+            50% {
+              filter: brightness(1.1);
+            }
+          }
+
+          .portfolio-btn:hover,
+          .schedule-btn:hover {
+            animation: pulse-glow 2s ease-in-out infinite;
+          }
         `}
       </style>
     </section>

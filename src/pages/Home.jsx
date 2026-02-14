@@ -155,14 +155,14 @@ const Home = () => {
           }}
         >
           <motion.div variants={fadeUp}>
-            <Widget title="Status">
-              <Status />
+            <Widget title="Now Playing">
+              <NowPlaying />
             </Widget>
           </motion.div>
 
           <motion.div variants={fadeUp}>
-            <Widget title="Now Playing">
-              <NowPlaying />
+            <Widget title="Status">
+              <Status />
             </Widget>
           </motion.div>
         </motion.div>

@@ -6,7 +6,7 @@ const VISUALS = {
   about2crashout: "/gifs/status/about2crashout.gif",
   crashingout: "/gifs/status/crashingout.gif",
   codenowork: "/gifs/status/codenowork.gif",
-  researching: "/gifs/status/researching.gif",
+  researching: "/gifs/status/researching2.gif",
   writingresearchpaper: "/gifs/status/writingresearchpaper.gif",
 };
 

@@ -120,32 +120,10 @@ const Navbar = () => {
               </button>
             );
           })}
-
-          {/* THEME TOGGLE (DESKTOP ONLY) */}
-          {!isMobile && (
-            <button
-              onClick={toggleTheme}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                width: 40,
-                height: 40,
-                marginLeft: 4,
-                background: "rgba(255,255,255,0.12)",
-                color: "inherit",
-                border: "1px solid var(--glass-border)",
-                borderRadius: "14px",
-                cursor: "pointer",
-              }}
-            >
-              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
-          )}
         </div>
       </nav>
 
-      {/* ---------------- TIME + MOBILE THEME ---------------- */}
+      {/* ---------------- TIME + THEME (ALL SCREENS) ---------------- */}
       <div
         style={{
           position: "fixed",
@@ -166,26 +144,26 @@ const Navbar = () => {
           fontSize: "0.9rem",
         }}
       >
-        {/* THEME TOGGLE (MOBILE ONLY) */}
-        {isMobile && (
-          <button
-            onClick={toggleTheme}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: 36,
-              height: 36,
-              background: "rgba(255,255,255,0.12)",
-              color: "inherit",
-              border: "1px solid var(--glass-border)",
-              borderRadius: "12px",
-              cursor: "pointer",
-            }}
-          >
-            {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
-          </button>
-        )}
+        {/* THEME TOGGLE */}
+        <button
+          onClick={toggleTheme}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: 36,
+            height: 36,
+            background:
+              theme === "dark" ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.06)",
+            color: "inherit",
+            border: "1px solid var(--glass-border)",
+            borderRadius: "12px",
+            cursor: "pointer",
+            transition: "all 0.2s ease",
+          }}
+        >
+          {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+        </button>
 
         {currentTime.toLocaleTimeString("en-US", {
           hour: "2-digit",
